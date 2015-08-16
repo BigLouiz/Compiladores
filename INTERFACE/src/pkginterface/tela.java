@@ -41,7 +41,7 @@ public class tela extends javax.swing.JFrame {
 
         RG_VM = new javax.swing.ButtonGroup();
         Executar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Parar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -54,13 +54,13 @@ public class tela extends javax.swing.JFrame {
         abrir = new javax.swing.JMenuItem();
         fechar = new javax.swing.JMenuItem();
         sair = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        About_Menu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Executar.setText("Executar");
 
-        jButton2.setText("Parar");
+        Parar.setText("Parar");
 
         jLabel1.setText("Código da Máquina");
 
@@ -118,8 +118,19 @@ public class tela extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Sobre");
-        jMenuBar1.add(jMenu2);
+        About_Menu.setText("Sobre");
+        About_Menu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        About_Menu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                About_MenuMouseClicked(evt);
+            }
+        });
+        About_Menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                About_MenuActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(About_Menu);
 
         setJMenuBar(jMenuBar1);
 
@@ -131,7 +142,7 @@ public class tela extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addGap(138, 138, 138)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +151,7 @@ public class tela extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(Executar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
+                        .addComponent(Parar)
                         .addGap(50, 50, 50))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -164,7 +175,7 @@ public class tela extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jRadioButton1)
@@ -172,7 +183,7 @@ public class tela extends javax.swing.JFrame {
                         .addComponent(jRadioButton2))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Executar)
-                        .addComponent(jButton2)))
+                        .addComponent(Parar)))
                 .addGap(57, 57, 57))
         );
 
@@ -289,6 +300,20 @@ public class tela extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jMenu1ActionPerformed
 
+    private void About_MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_About_MenuActionPerformed
+        // TODO add your handling code here:
+    
+              
+        
+    }//GEN-LAST:event_About_MenuActionPerformed
+
+    private void About_MenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_About_MenuMouseClicked
+        // TODO add your handling code here:
+        About_Screen about_scr = new About_Screen();
+        
+        about_scr.setVisible(true);
+    }//GEN-LAST:event_About_MenuMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -325,16 +350,16 @@ public class tela extends javax.swing.JFrame {
     }
     private String line;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu About_Menu;
     private javax.swing.JButton Executar;
+    private javax.swing.JButton Parar;
     private javax.swing.ButtonGroup RG_VM;
     private javax.swing.JMenuItem abrir;
     private javax.swing.JMenuItem fechar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
