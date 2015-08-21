@@ -37,7 +37,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="About_Menu">
+        <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Executar"/>
           </Properties>
@@ -45,17 +45,9 @@
         <Menu class="javax.swing.JMenu" name="sobre">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sobre"/>
-            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Cursor Padr&#xe3;o"/>
-            </Property>
           </Properties>
           <Events>
-<<<<<<< HEAD
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sobreMouseClicked"/>
-=======
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="About_MenuMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="About_MenuActionPerformed"/>
->>>>>>> 2b8c6199282dc4e841a2db02d8195f5082c08f64
           </Events>
         </Menu>
       </SubComponents>
@@ -87,26 +79,10 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
                   <Group type="102" attributes="0">
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-=======
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jRadioButton2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jRadioButton1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="Executar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="Parar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
->>>>>>> 2b8c6199282dc4e841a2db02d8195f5082c08f64
                   </Group>
                   <Component id="painel_cod" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -134,31 +110,11 @@
                   <Component id="painel_memoria" max="32767" attributes="0"/>
                   <Component id="painel_cod" max="32767" attributes="0"/>
               </Group>
-<<<<<<< HEAD
               <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-=======
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane3" min="-2" pref="275" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Executar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Parar" alignment="3" min="-2" max="-2" attributes="0"/>
->>>>>>> 2b8c6199282dc4e841a2db02d8195f5082c08f64
                   </Group>
                   <Component id="jPanel3" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -178,11 +134,7 @@
         <Property name="text" type="java.lang.String" value="Executar"/>
       </Properties>
     </Component>
-<<<<<<< HEAD
     <Component class="javax.swing.JButton" name="parar">
-=======
-    <Component class="javax.swing.JButton" name="Parar">
->>>>>>> 2b8c6199282dc4e841a2db02d8195f5082c08f64
       <Properties>
         <Property name="text" type="java.lang.String" value="Parar"/>
       </Properties>
