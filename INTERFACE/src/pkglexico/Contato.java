@@ -9,27 +9,17 @@ package pkglexico;
  *
  * @author Louiz
  */
-public class Token {
+public class Contato {
     
-    protected String simbolo;
-    protected String lexema;
-    
-    public Token(){
-     
+    private String lexema;
+    private String simbolo;
+
+    public Contato() {
         
-
     }
 
-    public Token(String simbolo, String lexema) {
-        this.simbolo = simbolo;
+    public Contato(String lexema, String simbolo) {
         this.lexema = lexema;
-    }
-
-    public String getSimbolo() {
-        return simbolo;
-    }
-
-    public void setSimbolo(String simbolo) {
         this.simbolo = simbolo;
     }
 
@@ -41,10 +31,20 @@ public class Token {
         this.lexema = lexema;
     }
 
+    public String getSimbolo() {
+        return simbolo;
+    }
+
+    public void setSimbolo(String simbolo) {
+        this.simbolo = simbolo;
+    }
+
     @Override
     public String toString() {
         return lexema + " " + simbolo; //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
     
     
     

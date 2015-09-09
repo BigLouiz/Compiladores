@@ -28,13 +28,16 @@ import javax.swing.table.DefaultTableModel;
 
 public class Lexico {
     
-     private Character caracter;
+     private static Character caracter;
      private Token token = new Token();
      private static char[] memory;
      private int cont = 0;
      private static Lexico read = new Lexico();
      static BufferedReader in;
      private  static FileInputStream arquivo;
+     
+     
+     //Analisador Lexical
      
      public static void main(String args[]) throws Exception{
          
@@ -64,11 +67,14 @@ public class Lexico {
     //System.out.print(str);
     memory = str.toCharArray();
     
-    for(int i=0;i<memory.length;i++){
+    /*for(int i=0;i<memory.length;i++){
          //System.out.println();
          System.out.print(""+memory[i]);
          
-    }
+    }*/
+    
+    
+    
     
     //Resetar ponteiro do arquivo
             
@@ -80,7 +86,37 @@ read.lerCaracter();  // returns the GET
 in.reset();     // rewinds the stream back to the mark
 read.lerCaracter();  // returns the GET again*/
    
+   read.lerCaracter();
    
+   while(read.checkEOF() == false){
+       
+       while(caracter.equals('{')||caracter.equals(' ') && read.checkEOF() == false ){
+           if(caracter.equals('{')){
+           
+               
+                 while(!caracter.equals('}')&& read.checkEOF() == false){
+                    read.lerCaracter();
+                 }  
+               
+            }
+           
+           if(caracter.equals(' ')){
+           
+               
+                 while(!caracter.equals(' ')&& read.checkEOF() == false){
+                    read.lerCaracter();
+                 }  
+               
+            }
+       }
+       
+       if(caracter.equals('.')){
+           read.PegaToken();
+           //Insere na lista
+       }
+       //Fecha arquivo.Java nao precisa
+       
+   }
       
     
 }
@@ -124,9 +160,25 @@ read.lerCaracter();  // returns the GET again*/
     
      
      
-     protected void TrataOperadorAritmetico(){
-
-
+     protected void TrataOperadorAritmetico() throws Exception{
+           String op = "" + caracter;
+         
+         switch(op)
+         {
+             
+         case "+":
+            token.setSimbolo("smais");
+            break;   
+                 
+         case "-":
+            token.setSimbolo("smenos");
+            break;     
+               
+         case "*":
+            token.setSimbolo("smult");
+            break;
+         }
+         token.setLexema(op);
      }
      
      protected void PegaToken() throws Exception{
@@ -141,6 +193,18 @@ read.lerCaracter();  // returns the GET again*/
          else if(caracter.equals(':')){
              read.TrataAtribuicao(); //<-mas isso a gente faz aqui, aproveita nishida e cria os metodos que estao faltando
          }  
+         else if(caracter.equals('+')||caracter.equals('-')||caracter.equals('*')){
+             read.TrataOperadorAritmetico();
+         }
+         else if(caracter.equals('<')||caracter.equals('>')||caracter.equals('=')){
+             read.TrataOperadorRelacional();
+         }
+         else if(caracter.equals(';')||caracter.equals(',')||caracter.equals('(')||caracter.equals(')')||caracter.equals('.')){
+             read.TrataPontuacao();
+         }
+         else{
+             System.err.close(); ///????
+         }
         
      }
 
@@ -226,14 +290,36 @@ read.lerCaracter();  // returns the GET again*/
      }
      
      protected void TrataPontuacao(){
-         println("Fodase");
+         String op = "" + caracter;
+         
+         switch(op)
+         {
+             
+         case ".":
+            token.setSimbolo("sponto");
+            break;   
+                 
+         case ";":
+            token.setSimbolo("sponto_virgula");
+            break;     
+               
+         case ",":
+            token.setSimbolo("svirgula");
+            break;
+             
+         case "(":
+            token.setSimbolo("sabre_parenteses");
+            break;
+             
+         case ")":
+            token.setSimbolo("sfecha_parenteses");
+            break;
+         }
+         token.setLexema(op);
 
      }
      
-     protected void trataOperadorAritmetico(){
-
-
-     }
+    
 }
 
 
