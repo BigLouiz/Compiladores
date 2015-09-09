@@ -227,9 +227,177 @@ read.lerCaracter();  // returns the GET again*/
      }
      
      
-     protected void Trata_id_and_palavra(){
-
-
+     protected void Trata_id_and_palavra() throws Exception{
+            String id = "" + caracter;
+                        
+            read.lerCaracter();
+            
+            while(Character.isLetter(caracter)){
+                id = id + caracter;
+                read.lerCaracter();
+            }
+            
+            token.setLexema(id);
+            
+            if(id.equals("programa"))
+                token.setSimbolo("sprograma");
+            
+            else if(id.equals("se"))
+                token.setSimbolo("sse");
+            
+            else if(id.equals("entao"))
+                token.setSimbolo("sentao");
+            
+            else if(id.equals("senao"))
+                token.setSimbolo("ssenao");
+            
+            else if(id.equals("enquanto"))
+                token.setSimbolo("senquanto");
+            
+            else if(id.equals("faca"))
+                token.setSimbolo("sfaca");
+            
+            else if(id.equals("inicio"))
+                token.setSimbolo("sinicio");
+            
+            else if(id.equals("fim"))
+                token.setSimbolo("sfim");
+            
+            else if(id.equals("escreva"))
+                token.setSimbolo("sescreva");
+            
+            else if(id.equals("leia"))
+                token.setSimbolo("sleia");
+            
+            else if(id.equals("var"))
+                token.setSimbolo("svar");
+            
+            else if(id.equals("boolean"))
+                token.setSimbolo("sboolean");
+            
+            else if(id.equals("inteiro"))
+                token.setSimbolo("sinteiro");
+            
+            else if(id.equals("verdadeiro"))
+                token.setSimbolo("sverdadeuri");
+            
+            else if(id.equals("falso"))
+                token.setSimbolo("sfalso");
+            
+            else if(id.equals("procedimento"))
+                token.setSimbolo("sprocedimento");
+            
+            else if(id.equals("funcao"))
+                token.setSimbolo("sfuncao");
+            
+            else if(id.equals("div"))
+                token.setSimbolo("sdiv");
+            
+            else if(id.equals("e"))
+                token.setSimbolo("se");
+            
+            else if(id.equals("ou"))
+                token.setSimbolo("sou");
+            
+            else if(id.equals("nao"))
+                token.setSimbolo("snao");
+            
+            else
+                token.setSimbolo("sidentificador");
+            
+            
+            
+            
+            /*
+            switch(id){
+                case "programa":
+                    token.setSimbolo("sprograma");
+                    break;
+                    
+                case "se":
+                    token.setSimbolo("sse");
+                    break;
+                    
+                case "entao":
+                    token.setSimbolo("sentao");
+                    break;
+                    
+                case "senao":
+                    token.setSimbolo("ssenao");
+                    break;
+                    
+                case "enquanto":
+                    token.setSimbolo("senquanto");
+                    break;
+                    
+                case "faca":
+                    token.setSimbolo("sfaca");
+                    break;
+                    
+                case "inicio":
+                    token.setSimbolo("sinicio");
+                    break;
+                    
+                case "fim":
+                    token.setSimbolo("sfim");
+                    break;
+                    
+                case "escreva":
+                    token.setSimbolo("sescreva");
+                    break;
+                    
+                case "leia":
+                    token.setSimbolo("sleia");
+                    break;
+                    
+                case "var":
+                    token.setSimbolo("svar");
+                    break;
+                    
+                case "inteiro":
+                    token.setSimbolo("sinteiro");
+                    break;
+                    
+                case "booleano":
+                    token.setSimbolo("sbooleano");
+                    break;
+                    
+                case "verdadeiro":
+                    token.setSimbolo("sverdadeiro");
+                    break;
+                    
+                case "falso":
+                    token.setSimbolo("sfalso");
+                    break;
+                    
+                case "procedimento":
+                    token.setSimbolo("sprocedimento");
+                    break;
+                    
+                case "funcao":
+                    token.setSimbolo("sfuncao");
+                    break;
+                    
+                case "div":
+                    token.setSimbolo("sdiv");
+                    break;
+                    
+                case "e":
+                    token.setSimbolo("se");
+                    break;
+                    
+                case "ou":
+                    token.setSimbolo("sou");
+                    break;
+                    
+                case "nao":
+                    token.setSimbolo("snao");
+                    break;
+                    
+        
+                token.setSimbolo("sidentificador");
+            }
+            */
      }
      
      
@@ -238,9 +406,14 @@ read.lerCaracter();  // returns the GET again*/
      
      
      
-     protected void TrataAtribuicao(){
-
-
+     protected void TrataAtribuicao() throws Exception{
+         read.lerCaracter();
+         
+         if(caracter.equals('=')){
+             read.lerCaracter();
+         }
+         else
+             System.out.print("*** ERRO ***\n\n");
      }
      
      protected void TrataOperadorRelacional() throws Exception{
@@ -290,6 +463,7 @@ read.lerCaracter();  // returns the GET again*/
      }
      
      protected void TrataPontuacao(){
+<<<<<<< HEAD
          String op = "" + caracter;
          
          switch(op)
@@ -316,6 +490,9 @@ read.lerCaracter();  // returns the GET again*/
             break;
          }
          token.setLexema(op);
+=======
+         println("Foda-se");
+>>>>>>> c55fc710a8755a1b14d17bf1da701301ced4adc2
 
      }
      
