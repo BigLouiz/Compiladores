@@ -20,7 +20,7 @@ public class Token {
 
     }
 
-    public Token(String simbolo, String lexema) {
+    public Token(String lexema,String simbolo) {
         this.simbolo = simbolo;
         this.lexema = lexema;
     }
@@ -43,7 +43,7 @@ public class Token {
 
     @Override
     public String toString() {
-        return lexema + " " + simbolo; //To change body of generated methods, choose Tools | Templates.
+        return  lexema + "                    " + simbolo; //To change body of generated methods, choose Tools | Templates.
     }
     
     

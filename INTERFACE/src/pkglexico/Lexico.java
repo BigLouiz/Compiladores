@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
 public class Lexico {
     
      private static Character caracter;
-     private Token token = new Token();
+     private static ArrayList<Token> token = new ArrayList();
      private static char[] memory;
      private int cont = 0;
      private static Lexico read = new Lexico();
@@ -85,6 +85,7 @@ read.lerCaracter();  // returns the GET
 //read.lerCaracter();  // returns the Host header
 in.reset();     // rewinds the stream back to the mark
 read.lerCaracter();  // returns the GET again*/
+   //Exibe Tokens
    
    read.lerCaracter();
    
@@ -103,20 +104,37 @@ read.lerCaracter();  // returns the GET again*/
            if(caracter.equals(' ')){
            
                
-                 while(!caracter.equals(' ')&& read.checkEOF() == false){
+                 while(caracter.equals(' ')&& read.checkEOF() == false){
                     read.lerCaracter();
                  }  
                
             }
        }
        
-       if(caracter.equals('.')){
+       if(read.checkEOF() == false){
            read.PegaToken();
            //Insere na lista
+           if(caracter.equals('.')){
+           token.add(new Token(".","sponto"));
+           }
+           
        }
-       //Fecha arquivo.Java nao precisa
        
+       
+       //Fecha arquivo.Java nao precisa
+        
+        
    }
+   
+   
+   for(Token t : token){
+            System.out.println(t);
+           // System.out.println(c.getLexema());
+    }
+        
+        
+        
+        
       
     
 }
@@ -131,7 +149,7 @@ read.lerCaracter();  // returns the GET again*/
          caracter = (char)r;
          cont++;
          
-         System.out.println(caracter);
+        
          
          
          }
@@ -167,18 +185,18 @@ read.lerCaracter();  // returns the GET again*/
          {
              
          case "+":
-            token.setSimbolo("smais");
+            token.add(new Token("+","smais"));
             break;   
                  
          case "-":
-            token.setSimbolo("smenos");
+            token.add(new Token("-","smenos"));
             break;     
                
          case "*":
-            token.setSimbolo("smult");
+            token.add(new Token("*","smult"));
             break;
          }
-         token.setLexema(op);
+         read.lerCaracter();
      }
      
      protected void PegaToken() throws Exception{
@@ -196,14 +214,14 @@ read.lerCaracter();  // returns the GET again*/
          else if(caracter.equals('+')||caracter.equals('-')||caracter.equals('*')){
              read.TrataOperadorAritmetico();
          }
-         else if(caracter.equals('<')||caracter.equals('>')||caracter.equals('=')){
+         else if(caracter.equals('<')||caracter.equals('>')||caracter.equals('=')||caracter.equals('!')){
              read.TrataOperadorRelacional();
          }
          else if(caracter.equals(';')||caracter.equals(',')||caracter.equals('(')||caracter.equals(')')||caracter.equals('.')){
              read.TrataPontuacao();
          }
          else{
-             System.err.close(); ///????
+            read.lerCaracter(); ///????
          }
         
      }
@@ -221,14 +239,13 @@ read.lerCaracter();  // returns the GET again*/
             read.lerCaracter();
         }
         
-        token.setSimbolo("snumero");
-        token.setLexema(num);
-
+        token.add(new Token(num,"snumero"));
+        
      }
      
      
      protected void Trata_id_and_palavra() throws Exception{
-            String id = "" + caracter;
+          String id = "" + caracter;
                         
             read.lerCaracter();
             
@@ -237,73 +254,73 @@ read.lerCaracter();  // returns the GET again*/
                 read.lerCaracter();
             }
             
-            token.setLexema(id);
+            
             
             if(id.equals("programa"))
-                token.setSimbolo("sprograma");
+                token.add(new Token(id,"sprograma"));
             
             else if(id.equals("se"))
-                token.setSimbolo("sse");
+                token.add(new Token(id,"sse"));
             
             else if(id.equals("entao"))
-                token.setSimbolo("sentao");
+                token.add(new Token(id,"sentao"));
             
             else if(id.equals("senao"))
-                token.setSimbolo("ssenao");
+                token.add(new Token(id,"ssenao"));
             
             else if(id.equals("enquanto"))
-                token.setSimbolo("senquanto");
+                token.add(new Token(id,"senquanto"));
             
             else if(id.equals("faca"))
-                token.setSimbolo("sfaca");
+                token.add(new Token(id,"sfaca"));
             
             else if(id.equals("inicio"))
-                token.setSimbolo("sinicio");
+                token.add(new Token(id,"sinicio"));
             
             else if(id.equals("fim"))
-                token.setSimbolo("sfim");
+                token.add(new Token(id,"sfim"));
             
             else if(id.equals("escreva"))
-                token.setSimbolo("sescreva");
+                token.add(new Token(id,"sescreva"));
             
             else if(id.equals("leia"))
-                token.setSimbolo("sleia");
+                token.add(new Token(id,"sleia"));
             
             else if(id.equals("var"))
-                token.setSimbolo("svar");
+                token.add(new Token(id,"svar"));
             
             else if(id.equals("boolean"))
-                token.setSimbolo("sboolean");
+                token.add(new Token(id,"sboolean"));
             
             else if(id.equals("inteiro"))
-                token.setSimbolo("sinteiro");
+                token.add(new Token(id,"sinteiro"));
             
             else if(id.equals("verdadeiro"))
-                token.setSimbolo("sverdadeuri");
+                token.add(new Token(id,"sverdadeuri"));
             
             else if(id.equals("falso"))
-                token.setSimbolo("sfalso");
+                token.add(new Token(id,"sfalso"));
             
             else if(id.equals("procedimento"))
-                token.setSimbolo("sprocedimento");
+                token.add(new Token(id,"sprocedimento"));
             
             else if(id.equals("funcao"))
-                token.setSimbolo("sfuncao");
+                token.add(new Token(id,"sfuncao"));
             
             else if(id.equals("div"))
-                token.setSimbolo("sdiv");
+                token.add(new Token(id,"sdiv"));
             
             else if(id.equals("e"))
-                token.setSimbolo("se");
+                token.add(new Token(id,"se"));
             
             else if(id.equals("ou"))
-                token.setSimbolo("sou");
+                token.add(new Token(id,"sou"));
             
             else if(id.equals("nao"))
-                token.setSimbolo("snao");
+                token.add(new Token(id,"snao"));
             
             else
-                token.setSimbolo("sidentificador");
+                token.add(new Token(id,"sidentificador"));
             
             
             
@@ -398,6 +415,7 @@ read.lerCaracter();  // returns the GET again*/
                 token.setSimbolo("sidentificador");
             }
             */
+
      }
      
      
@@ -407,13 +425,18 @@ read.lerCaracter();  // returns the GET again*/
      
      
      protected void TrataAtribuicao() throws Exception{
+         
          read.lerCaracter();
          
          if(caracter.equals('=')){
+             token.add(new Token(":=","satribuicao"));
              read.lerCaracter();
          }
-         else
-             System.out.print("*** ERRO ***\n\n");
+         else{
+             token.add(new Token(":","sdoispontos"));
+             
+         }
+         
      }
      
      protected void TrataOperadorRelacional() throws Exception{
@@ -426,74 +449,74 @@ read.lerCaracter();  // returns the GET again*/
              read.lerCaracter();
              if(caracter.equals('=')){
                  op = op + caracter;
-                 token.setSimbolo("smanorig");
+                 token.add(new Token("<=","smanorig"));
                 read.lerCaracter();
              }  
             else
-                 token.setSimbolo("smenor");
-                 
+                 token.add(new Token("<","smenor"));
+             break;  
          case ">":
              read.lerCaracter();
              if( caracter.equals('=')){
                  op = op + caracter;
-                 token.setSimbolo("smaiorig");
+                 token.add(new Token(">=","smaiorig"));
                  read.lerCaracter();
              }   
              else
-                 token.setSimbolo("smaior");
-             
+                 token.add(new Token(">","smaior"));
+             break;
          case "=":
-             token.setSimbolo("sig");
+             token.add(new Token("=","sig"));
              read.lerCaracter();
-             
+             break;
          case "!":
              read.lerCaracter();
              if(caracter.equals('=')){
                  
             op = op + caracter;
-            token.setSimbolo("sdif");
+            token.add(new Token("!=","sdif"));
             read.lerCaracter();
-             }  
+             } 
          else
              break;
              
-             token.setLexema(op);
+             
          }
 
      }
      
-     protected void TrataPontuacao(){
-<<<<<<< HEAD
+     protected void TrataPontuacao() throws Exception{
          String op = "" + caracter;
          
          switch(op)
          {
              
          case ".":
-            token.setSimbolo("sponto");
+            token.add(new Token(op,"sponto"));
             break;   
                  
          case ";":
-            token.setSimbolo("sponto_virgula");
+            token.add(new Token(op,"sponto_virgula"));
             break;     
                
          case ",":
-            token.setSimbolo("svirgula");
+            token.add(new Token(op,"svirgula"));
             break;
              
          case "(":
-            token.setSimbolo("sabre_parenteses");
+            token.add(new Token(op,"sabre_parenteses"));
             break;
              
          case ")":
-            token.setSimbolo("sfecha_parenteses");
+            token.add(new Token(op,"sfecha_parenteses"));
             break;
          }
-         token.setLexema(op);
-=======
-         println("Foda-se");
->>>>>>> c55fc710a8755a1b14d17bf1da701301ced4adc2
-
+         read.lerCaracter();
+         
+         
+         if(caracter.equals('"')){
+         read.lerCaracter();
+         }
      }
      
     
