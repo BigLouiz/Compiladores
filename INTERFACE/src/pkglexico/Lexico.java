@@ -287,7 +287,7 @@ read.lerCaracter();  // returns the GET again*/
                 token.add(new Token(id,"sleia"));
             
             else if(id.equals("var"))
-                token.add(new Token(id,"svar"));
+                token.add(new Token(id,"\tsvar"));
             
             else if(id.equals("boolean"))
                 token.add(new Token(id,"sboolean"));
