@@ -1,4 +1,4 @@
-programa test;
+programa testando;
 var v: inteiro;
 i,max, juro,: inteiro; 
 inicio

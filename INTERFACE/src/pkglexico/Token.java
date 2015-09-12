@@ -43,7 +43,8 @@ public class Token {
 
     @Override
     public String toString() {
-        return  lexema + "                    " + simbolo; //To change body of generated methods, choose Tools | Templates.
+                  
+        return lexema + "\t\t" + simbolo; //To change body of generated methods, choose Tools | Templates.
     }
     
     

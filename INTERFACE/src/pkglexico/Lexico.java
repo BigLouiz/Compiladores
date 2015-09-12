@@ -79,7 +79,6 @@ public class Lexico {
     //Resetar ponteiro do arquivo
             
     /*int BUFFER_SIZE = 1000;
-
 in.mark(BUFFER_SIZE);
 read.lerCaracter();  // returns the GET
 //read.lerCaracter();  // returns the Host header
@@ -287,7 +286,7 @@ read.lerCaracter();  // returns the GET again*/
                 token.add(new Token(id,"sleia"));
             
             else if(id.equals("var"))
-                token.add(new Token(id,"svar"));
+                token.add(new Token(id,"\tsvar"));
             
             else if(id.equals("boolean"))
                 token.add(new Token(id,"sboolean"));
@@ -521,5 +520,3 @@ read.lerCaracter();  // returns the GET again*/
      
     
 }
-
-
