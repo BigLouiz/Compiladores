@@ -1,7 +1,13 @@
 tratamento de chaves {}}
 
+    OK
+
 erro digito após ';'  (parar a exec com qualquer erro)
 
-nao aceita '[' ou ']' (para a exec)
 
-nao aceita '/' (para a exec)
+
+nao aceita '[' ou ']' (para a exec)  // else na verificacao de simbolo)OK
+
+
+
+nao aceita '/' (para a exec)  // else na verificacao de simbolo OK

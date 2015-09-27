@@ -35,7 +35,7 @@ public class Lexico {
      private static Lexico read = new Lexico();
      static BufferedReader in;
      private  static FileInputStream arquivo;
-     
+     private Boolean flag_pontovirgula;
      
      //Analisador Lexical
      
@@ -88,17 +88,32 @@ read.lerCaracter();  // returns the GET again*/
    
    read.lerCaracter();
    
+   int flag=2;
+   
    while(read.checkEOF() == false){
+       
+       
        
        while(caracter.equals('{')||caracter.equals(' ') && read.checkEOF() == false ){
            if(caracter.equals('{')){
+               
+               flag = 1;
            
                
                  while(!caracter.equals('}')&& read.checkEOF() == false){
-                    read.lerCaracter();
-                 }  
+                    
+                     read.lerCaracter();
+                     
+                 }
+                 
+                 
+                 
+                 
                
             }
+           
+           
+           
            
            if(caracter.equals(' ')){
            
@@ -109,6 +124,18 @@ read.lerCaracter();  // returns the GET again*/
                
             }
        }
+       
+       if(caracter.equals('}') && flag==0){
+                     System.out.println("ERRO");
+                     System.exit(-1);
+                   }   
+       
+       if(caracter.equals('}')){
+                  
+               
+               flag=0;
+       }
+           
        
        if(read.checkEOF() == false){
            read.PegaToken();
@@ -139,7 +166,7 @@ read.lerCaracter();  // returns the GET again*/
 }
 
 
-    public  void lerCaracter()throws Exception{
+    public Character lerCaracter()throws Exception{
          //this.caracter = memory[cont];
          int r;
                 
@@ -148,14 +175,12 @@ read.lerCaracter();  // returns the GET again*/
          caracter = (char)r;
          cont++;
          
-        
-         
-         
          }
          else{
-            System.out.println("End OF File!!!!");
+            System.out.println("*****  End of File!!!!  *****");
          }
          
+         return caracter;
      }  
      
      //Metodo para verificar o final do arquivo
@@ -199,6 +224,8 @@ read.lerCaracter();  // returns the GET again*/
      }
      
      protected void PegaToken() throws Exception{
+             
+         Character ret;
          
          if(Character.isDigit(caracter)){
              read.TrataDigito();
@@ -219,12 +246,25 @@ read.lerCaracter();  // returns the GET again*/
          else if(caracter.equals(';')||caracter.equals(',')||caracter.equals('(')||caracter.equals(')')||caracter.equals('.')){
              read.TrataPontuacao();
          }
+  
+         else if(caracter.equals('\n')||caracter.equals('\r') || caracter.equals('}')){
+            read.lerCaracter();
+         }
          else{
-            read.lerCaracter(); ///????
+             //read.lerCaracter();
+             
+             
+             
+             //read.TrataErro();
+          
+             System.out.println("*** ERROR ***");
+             System.exit(-1);
+             
          }
         
      }
-
+     
+     
      
      
      protected void TrataDigito() throws Exception{
@@ -320,105 +360,8 @@ read.lerCaracter();  // returns the GET again*/
             
             else
                 token.add(new Token(id,"sidentificador"));
-            
-            
-            
-            
-            /*
-            switch(id){
-                case "programa":
-                    token.setSimbolo("sprograma");
-                    break;
-                    
-                case "se":
-                    token.setSimbolo("sse");
-                    break;
-                    
-                case "entao":
-                    token.setSimbolo("sentao");
-                    break;
-                    
-                case "senao":
-                    token.setSimbolo("ssenao");
-                    break;
-                    
-                case "enquanto":
-                    token.setSimbolo("senquanto");
-                    break;
-                    
-                case "faca":
-                    token.setSimbolo("sfaca");
-                    break;
-                    
-                case "inicio":
-                    token.setSimbolo("sinicio");
-                    break;
-                    
-                case "fim":
-                    token.setSimbolo("sfim");
-                    break;
-                    
-                case "escreva":
-                    token.setSimbolo("sescreva");
-                    break;
-                    
-                case "leia":
-                    token.setSimbolo("sleia");
-                    break;
-                    
-                case "var":
-                    token.setSimbolo("svar");
-                    break;
-                    
-                case "inteiro":
-                    token.setSimbolo("sinteiro");
-                    break;
-                    
-                case "booleano":
-                    token.setSimbolo("sbooleano");
-                    break;
-                    
-                case "verdadeiro":
-                    token.setSimbolo("sverdadeiro");
-                    break;
-                    
-                case "falso":
-                    token.setSimbolo("sfalso");
-                    break;
-                    
-                case "procedimento":
-                    token.setSimbolo("sprocedimento");
-                    break;
-                    
-                case "funcao":
-                    token.setSimbolo("sfuncao");
-                    break;
-                    
-                case "div":
-                    token.setSimbolo("sdiv");
-                    break;
-                    
-                case "e":
-                    token.setSimbolo("se");
-                    break;
-                    
-                case "ou":
-                    token.setSimbolo("sou");
-                    break;
-                    
-                case "nao":
-                    token.setSimbolo("snao");
-                    break;
-                    
-        
-                token.setSimbolo("sidentificador");
-            }
-            */
 
      }
-     
-     
-     
      
      
      
@@ -496,6 +439,7 @@ read.lerCaracter();  // returns the GET again*/
                  
          case ";":
             token.add(new Token(op,"sponto_virgula"));
+            this.flag_pontovirgula = true;
             break;     
                
          case ",":
@@ -511,12 +455,26 @@ read.lerCaracter();  // returns the GET again*/
             break;
          }
          read.lerCaracter();
-         
-         
+         /*
+         if(this.flag_pontovirgula == true && !caracter.equals('\n') || !caracter.equals('\r')){
+             System.out.println("Erro Ponto e Virgula");
+             System.exit(-1);
+         }
+         else{
+             this.flag_pontovirgula = false;
+         }
+         */
          if(caracter.equals('"')){
          read.lerCaracter();
          }
      }
-     
+
+    private void TrataErro() {
+        
+        
+
+//To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }
