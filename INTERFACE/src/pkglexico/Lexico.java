@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -32,16 +33,18 @@ public class Lexico {
      private static ArrayList<Token> token = new ArrayList();
      private static char[] memory;
      private int cont = 0;
-     private static Lexico read = new Lexico();
+   
      static BufferedReader in;
      private  static FileInputStream arquivo;
+     private int token_indice;
+    
      
-     
+     private Boolean flag_pontovirgula;
      //Analisador Lexical
      
-     public static void main(String args[]) throws Exception{
-         
-         Scanner ler = new Scanner(System.in);
+     public Lexico() throws Exception{
+
+          Scanner ler = new Scanner(System.in);
          System.out.printf("Informe o nome de arquivo texto:\n");
          String nome = ler.nextLine(); 
          Scanner file = new Scanner(new File(nome));
@@ -80,38 +83,65 @@ public class Lexico {
             
     /*int BUFFER_SIZE = 1000;
 in.mark(BUFFER_SIZE);
-read.lerCaracter();  // returns the GET
-//read.lerCaracter();  // returns the Host header
+lerCaracter();  // returns the GET
+//lerCaracter();  // returns the Host header
 in.reset();     // rewinds the stream back to the mark
-read.lerCaracter();  // returns the GET again*/
+lerCaracter();  // returns the GET again*/
    //Exibe Tokens
    
-   read.lerCaracter();
+   lerCaracter();
    
-   while(read.checkEOF() == false){
+   int flag=2;
+   
+   while(checkEOF() == false){
        
-       while(caracter.equals('{')||caracter.equals(' ') && read.checkEOF() == false ){
+       
+       
+       while(caracter.equals('{')||caracter.equals(' ') && checkEOF() == false ){
            if(caracter.equals('{')){
+               
+               flag = 1;
            
                
-                 while(!caracter.equals('}')&& read.checkEOF() == false){
-                    read.lerCaracter();
-                 }  
+                 while(!caracter.equals('}')&& checkEOF() == false){
+                    
+                     lerCaracter();
+                     
+                 }
+                 
+                 
+                 
+                 
                
             }
+           
+           
+           
            
            if(caracter.equals(' ')){
            
                
-                 while(caracter.equals(' ')&& read.checkEOF() == false){
-                    read.lerCaracter();
+                 while(caracter.equals(' ')&& checkEOF() == false){
+                    lerCaracter();
                  }  
                
             }
        }
        
-       if(read.checkEOF() == false){
-           read.PegaToken();
+       if(caracter.equals('}') && flag==0){
+                     System.out.println("ERRO");
+                     System.exit(-1);
+                   }   
+       
+       if(caracter.equals('}')){
+                  
+               
+               flag=0;
+       }
+           
+       
+       if(checkEOF() == false){
+           PegaToken();
            //Insere na lista
            if(caracter.equals('.')){
            token.add(new Token(".","sponto"));
@@ -139,7 +169,7 @@ read.lerCaracter();  // returns the GET again*/
 }
 
 
-    public  void lerCaracter()throws Exception{
+    public Character lerCaracter()throws Exception{
          //this.caracter = memory[cont];
          int r;
                 
@@ -148,14 +178,12 @@ read.lerCaracter();  // returns the GET again*/
          caracter = (char)r;
          cont++;
          
-        
-         
-         
          }
          else{
-            System.out.println("End OF File!!!!");
+            System.out.println("*****  End of File!!!!  *****");
          }
          
+         return caracter;
      }  
      
      //Metodo para verificar o final do arquivo
@@ -195,47 +223,62 @@ read.lerCaracter();  // returns the GET again*/
             token.add(new Token("*","smult"));
             break;
          }
-         read.lerCaracter();
+         lerCaracter();
      }
      
      protected void PegaToken() throws Exception{
+             
+         Character ret;
          
          if(Character.isDigit(caracter)){
-             read.TrataDigito();
+             TrataDigito();
          }
          else if(Character.isLetter(caracter)){
-                read.Trata_id_and_palavra();
+                Trata_id_and_palavra();
              
          } 
          else if(caracter.equals(':')){
-             read.TrataAtribuicao(); //<-mas isso a gente faz aqui, aproveita nishida e cria os metodos que estao faltando
+             TrataAtribuicao(); //<-mas isso a gente faz aqui, aproveita nishida e cria os metodos que estao faltando
          }  
          else if(caracter.equals('+')||caracter.equals('-')||caracter.equals('*')){
-             read.TrataOperadorAritmetico();
+             TrataOperadorAritmetico();
          }
          else if(caracter.equals('<')||caracter.equals('>')||caracter.equals('=')||caracter.equals('!')){
-             read.TrataOperadorRelacional();
+             TrataOperadorRelacional();
          }
          else if(caracter.equals(';')||caracter.equals(',')||caracter.equals('(')||caracter.equals(')')||caracter.equals('.')){
-             read.TrataPontuacao();
+             TrataPontuacao();
+         }
+  
+         else if(caracter.equals('\n')||caracter.equals('\r') || caracter.equals('}')|| caracter.equals('\t')){
+            lerCaracter();
          }
          else{
-            read.lerCaracter(); ///????
+             //lerCaracter();
+             
+             
+             
+             //TrataErro();
+          
+             System.out.println("*** ERROR ***");
+             System.exit(-1);
+             
          }
         
      }
-
+     
+     
      
      
      protected void TrataDigito() throws Exception{
           //Inicio
         String num = "" + caracter;
-        read.lerCaracter();
+        lerCaracter();
         
         while(Character.isDigit(caracter))
         {
             num = num + caracter;
-            read.lerCaracter();
+            lerCaracter();
         }
         
         token.add(new Token(num,"snumero"));
@@ -246,11 +289,11 @@ read.lerCaracter();  // returns the GET again*/
      protected void Trata_id_and_palavra() throws Exception{
           String id = "" + caracter;
                         
-            read.lerCaracter();
+            lerCaracter();
             
             while(Character.isLetter(caracter)){
                 id = id + caracter;
-                read.lerCaracter();
+                lerCaracter();
             }
             
             
@@ -320,116 +363,19 @@ read.lerCaracter();  // returns the GET again*/
             
             else
                 token.add(new Token(id,"sidentificador"));
-            
-            
-            
-            
-            /*
-            switch(id){
-                case "programa":
-                    token.setSimbolo("sprograma");
-                    break;
-                    
-                case "se":
-                    token.setSimbolo("sse");
-                    break;
-                    
-                case "entao":
-                    token.setSimbolo("sentao");
-                    break;
-                    
-                case "senao":
-                    token.setSimbolo("ssenao");
-                    break;
-                    
-                case "enquanto":
-                    token.setSimbolo("senquanto");
-                    break;
-                    
-                case "faca":
-                    token.setSimbolo("sfaca");
-                    break;
-                    
-                case "inicio":
-                    token.setSimbolo("sinicio");
-                    break;
-                    
-                case "fim":
-                    token.setSimbolo("sfim");
-                    break;
-                    
-                case "escreva":
-                    token.setSimbolo("sescreva");
-                    break;
-                    
-                case "leia":
-                    token.setSimbolo("sleia");
-                    break;
-                    
-                case "var":
-                    token.setSimbolo("svar");
-                    break;
-                    
-                case "inteiro":
-                    token.setSimbolo("sinteiro");
-                    break;
-                    
-                case "booleano":
-                    token.setSimbolo("sbooleano");
-                    break;
-                    
-                case "verdadeiro":
-                    token.setSimbolo("sverdadeiro");
-                    break;
-                    
-                case "falso":
-                    token.setSimbolo("sfalso");
-                    break;
-                    
-                case "procedimento":
-                    token.setSimbolo("sprocedimento");
-                    break;
-                    
-                case "funcao":
-                    token.setSimbolo("sfuncao");
-                    break;
-                    
-                case "div":
-                    token.setSimbolo("sdiv");
-                    break;
-                    
-                case "e":
-                    token.setSimbolo("se");
-                    break;
-                    
-                case "ou":
-                    token.setSimbolo("sou");
-                    break;
-                    
-                case "nao":
-                    token.setSimbolo("snao");
-                    break;
-                    
-        
-                token.setSimbolo("sidentificador");
-            }
-            */
 
      }
      
      
      
      
-     
-     
-     
      protected void TrataAtribuicao() throws Exception{
          
-         read.lerCaracter();
+         lerCaracter();
          
          if(caracter.equals('=')){
              token.add(new Token(":=","satribuicao"));
-             read.lerCaracter();
+             lerCaracter();
          }
          else{
              token.add(new Token(":","sdoispontos"));
@@ -445,36 +391,36 @@ read.lerCaracter();  // returns the GET again*/
          {
              
          case "<":
-             read.lerCaracter();
+             lerCaracter();
              if(caracter.equals('=')){
                  op = op + caracter;
                  token.add(new Token("<=","smanorig"));
-                read.lerCaracter();
+                lerCaracter();
              }  
             else
                  token.add(new Token("<","smenor"));
              break;  
          case ">":
-             read.lerCaracter();
+             lerCaracter();
              if( caracter.equals('=')){
                  op = op + caracter;
                  token.add(new Token(">=","smaiorig"));
-                 read.lerCaracter();
+                 lerCaracter();
              }   
              else
                  token.add(new Token(">","smaior"));
              break;
          case "=":
              token.add(new Token("=","sig"));
-             read.lerCaracter();
+             lerCaracter();
              break;
          case "!":
-             read.lerCaracter();
+             lerCaracter();
              if(caracter.equals('=')){
                  
             op = op + caracter;
             token.add(new Token("!=","sdif"));
-            read.lerCaracter();
+            lerCaracter();
              } 
          else
              break;
@@ -496,6 +442,7 @@ read.lerCaracter();  // returns the GET again*/
                  
          case ";":
             token.add(new Token(op,"sponto_virgula"));
+            this.flag_pontovirgula = true;
             break;     
                
          case ",":
@@ -510,13 +457,48 @@ read.lerCaracter();  // returns the GET again*/
             token.add(new Token(op,"sfecha_parenteses"));
             break;
          }
-         read.lerCaracter();
-         
-         
+         lerCaracter();
+         /*
+         if(this.flag_pontovirgula == true && !caracter.equals('\n') || !caracter.equals('\r')){
+             System.out.println("Erro Ponto e Virgula");
+             System.exit(-1);
+         }
+         else{
+             this.flag_pontovirgula = false;
+         }
+         */
          if(caracter.equals('"')){
-         read.lerCaracter();
+         lerCaracter();
+         }
+     }
+
+    private void TrataErro() {
+        
+        
+
+//To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
+     
+     protected  Token getTokens(){
+         
+         token_indice++;
+         
+         if(token.isEmpty()){
+             
+             System.out.println("Compilado com Sucesso!");
+             return null;
+         }
+         else{
+         return token.get(token_indice);
          }
      }
      
     
 }
+
+
+
+
