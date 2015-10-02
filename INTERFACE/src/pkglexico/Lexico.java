@@ -36,10 +36,12 @@ public class Lexico {
    
      static BufferedReader in;
      private  static FileInputStream arquivo;
-     private int token_indice;
+     private int token_indice = -1;
     
      
      private Boolean flag_pontovirgula;
+     private int flag=2;
+     
      //Analisador Lexical
      
      public Lexico() throws Exception{
@@ -51,6 +53,7 @@ public class Lexico {
          File ww = new File(nome);
          System.out.printf("\nConteúdo do arquivo texto:\n"); 
          int j=0;
+         
         
          String str = "";
          try { 
@@ -91,7 +94,6 @@ lerCaracter();  // returns the GET again*/
    
    lerCaracter();
    
-   int flag=2;
    
    while(checkEOF() == false){
        
@@ -168,6 +170,11 @@ lerCaracter();  // returns the GET again*/
     
 }
 
+     
+     public int GetComment() throws Exception{
+         
+         return flag;
+     }
 
     public Character lerCaracter()throws Exception{
          //this.caracter = memory[cont];
@@ -394,7 +401,7 @@ lerCaracter();  // returns the GET again*/
              lerCaracter();
              if(caracter.equals('=')){
                  op = op + caracter;
-                 token.add(new Token("<=","smanorig"));
+                 token.add(new Token("<=","smenorig"));
                 lerCaracter();
              }  
             else
@@ -492,6 +499,7 @@ lerCaracter();  // returns the GET again*/
              return null;
          }
          else{
+             System.out.println("" + token_indice);
          return token.get(token_indice);
          }
      }
