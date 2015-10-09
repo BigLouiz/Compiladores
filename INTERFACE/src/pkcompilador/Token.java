@@ -3,31 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkglexico;
+package pkcompilador;
 
 /**
  *
  * @author Louiz
  */
-public class Contato {
+public class Token {
     
-    private String lexema;
-    private String simbolo;
-
-    public Contato() {
+    protected String simbolo;
+    protected String lexema;
+    
+    public Token(){
+     
         
+
     }
 
-    public Contato(String lexema, String simbolo) {
-        this.lexema = lexema;
+    public Token(String lexema,String simbolo) {
         this.simbolo = simbolo;
-    }
-
-    public String getLexema() {
-        return lexema;
-    }
-
-    public void setLexema(String lexema) {
         this.lexema = lexema;
     }
 
@@ -39,12 +33,19 @@ public class Contato {
         this.simbolo = simbolo;
     }
 
+    public String getLexema() {
+        return lexema;
+    }
+
+    public void setLexema(String lexema) {
+        this.lexema = lexema;
+    }
+
     @Override
     public String toString() {
-        return lexema + " " + simbolo; //To change body of generated methods, choose Tools | Templates.
+                  
+        return lexema + "\t\t" + simbolo; //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
     
     
     

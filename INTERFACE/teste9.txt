@@ -1,21 +1,19 @@
-{Teste erro operador relacional}
+{Teste ponto e virgula antes do fim}
 programa test1;
 
 var a,b,c: inteiro;
 
 {proc 1}
-procedimento analisa1 ;
-var a, x: inteiro ;
-       z:booleano;
+procedimento analisa1;
+var a, x: inteiro;
+       z: booleano;
 inicio
-  se x>>1  entao
+  se x>1  entao
       x:= 0;
   leia(z);
   enquanto (a != 89) e (a<= 1000)  {condicao de parada}
-  faca inicio
-           a:= x+z
-       fim;
-  escreva(a)
+  faca a:= x+z;
+  escreva(a);
 fim;
 
 
@@ -33,4 +31,4 @@ inicio
     senao escreva(c)
 fim.
 
-{fim}
+{fim} 

@@ -1,14 +1,14 @@
-{Teste erro operador relacional}
+{Teste falta inicio}
 programa test1;
 
 var a,b,c: inteiro;
 
 {proc 1}
-procedimento analisa1 ;
-var a, x: inteiro ;
-       z:booleano;
+procedimento analisa1;
+var a, x: inteiro;
+       z: booleano;
 inicio
-  se x>>1  entao
+  se x>1  entao
       x:= 0;
   leia(z);
   enquanto (a != 89) e (a<= 1000)  {condicao de parada}
@@ -25,7 +25,7 @@ inicio
   b:= a*a+(c div b) 
 fim;
 
-inicio
+
     analisa1;
     analisa2;
     se b > (c+ a*a)
@@ -33,4 +33,4 @@ inicio
     senao escreva(c)
 fim.
 
-{fim}
+{fim} 
