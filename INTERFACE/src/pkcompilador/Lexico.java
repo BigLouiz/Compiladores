@@ -106,7 +106,8 @@ lerCaracter();  // returns the GET again*/
        
        
        
-       while(caracter.equals('{')||caracter.equals(' ') && checkEOF() == false ||  caracter.equals('\n') && checkEOF() == false){
+
+       while(caracter.equals('{')||caracter.equals(' ') && checkEOF() == false ||  caracter.equals('\n') && checkEOF() == false ||  caracter.equals('\r') && checkEOF() == false){
            if(caracter.equals('{')){
                
                flag = 1;
@@ -138,6 +139,11 @@ lerCaracter();  // returns the GET again*/
            if(caracter.equals('\n')){
                lerCaracter();
                sintatico.SomaLinha();
+           }
+           
+            if(caracter.equals('\r')){
+               lerCaracter();
+               //sintatico.SomaLinha();
            }
        }
        

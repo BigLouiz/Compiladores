@@ -424,7 +424,7 @@ public class Sintatico {
     public void Analisa_Expressao() throws Exception{
         
         sintatico.Analisa_Expressao_Simples();
-        if(token.simbolo == "smaior" || token.simbolo == "smaiorig" || token.simbolo == "smenor" || token.simbolo == "smenorig" || token.simbolo == "sdif"){
+        if(token.simbolo == "smaior" || token.simbolo == "smaiorig" || token.simbolo == "smenor" || token.simbolo == "smenorig" || token.simbolo == "sdif" || token.simbolo == "sig"){
             
             token  = lexico.getToken();
             sintatico.Analisa_Expressao_Simples();
