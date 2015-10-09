@@ -142,9 +142,9 @@ lerCaracter();  // returns the GET again*/
            }
            
             if(caracter.equals('\r')){
-               lerCaracter();
-               //sintatico.SomaLinha();
-           }
+              lerCaracter();
+              //sintatico.SomaLinha();
+          }
        }
        
         
@@ -159,7 +159,9 @@ lerCaracter();  // returns the GET again*/
        if(checkEOF() == false){
            tk = PegaToken();
            while(tk == null){
-               
+               if(checkEOF() == true){
+                   return null;
+               }
             tk = PegaToken();   
            }
            //Insere na lista
@@ -212,6 +214,7 @@ lerCaracter();  // returns the GET again*/
          }
          else{
             System.out.println("*****  End of File!!!!  *****");
+            //System.exit(-1);
          }
          
          return caracter;
@@ -352,7 +355,7 @@ lerCaracter();  // returns the GET again*/
                 token.add(new Token(id,"sse"));
                 tk = new Token(id,"sse");
             }
-            else if(id.equals("entao")){
+            else if(id.equals("entao") || id.equals("então")){
                 token.add(new Token(id,"sentao"));
                 tk = new Token(id,"sentao");
             }

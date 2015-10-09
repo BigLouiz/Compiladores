@@ -8,7 +8,7 @@ procedimento analisa1;
 var a, x: inteiro;
        z: booleano;
 inicio
-  se x>1  entao
+  se x>1  então
       x:= 0;
   leia(z);
   enquanto (a != 89) e (a<= 100.0)  {condicao de parada}

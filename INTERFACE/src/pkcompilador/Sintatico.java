@@ -78,28 +78,28 @@ public class Sintatico {
                         
                     }
                     else{
-                        System.out.println("erro 2: falta ponto");
+                        System.out.println("erro 02: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                         System.exit(-1);
                     }
                 }
                 
                 else{
                     System.out.println(token.simbolo);
-                    System.out.println("ERRO 3!!!");
+                    System.out.println("erro 03: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                     System.exit(-1);
                 }
             }
             
             else{
                 System.out.println(token.simbolo);
-                System.out.println("ERRO 4!!!");
+                System.out.println("erro 04: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                 System.exit(-1);
             }
         }
         
         else{
             System.out.println(token.simbolo);
-            System.out.println("ERRO 5!!!");
+            System.out.println("erro 05: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
             System.exit(-1);
         }
         
@@ -126,14 +126,14 @@ public class Sintatico {
                     if(token.simbolo=="sponto_virgula")
                         token  = lexico.getToken();
                     else{
-                        System.out.println("ERRO 6!!");
+                        System.out.println("erro 06: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                         System.exit(-1);
                     }
                 }
                        
             }
             else{
-                System.out.println("ERRO 7!!!");
+                System.out.println("erro 07: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                 System.exit(-1);
             }
         }
@@ -149,7 +149,7 @@ public class Sintatico {
                         token  = lexico.getToken();
                         
                         if(token.simbolo == "sdoispontos"){
-                            System.out.println("erro 8: virgula seguida de dois pontos!!!");
+                            System.out.println("erro 08: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                             System.exit(-1);
                         }
                     }
@@ -160,12 +160,12 @@ public class Sintatico {
                     }
                 }
                 else{
-                    System.out.println("ERRO 10!!!");
+                    System.out.println("erro 09: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                     System.exit(-1);
                 }
             }
             else{
-                System.out.println("ERRO 11!!!");
+                System.out.println("erro 11: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                 System.exit(-1);
             }
         }
@@ -178,7 +178,7 @@ public class Sintatico {
     
     public void Analisa_Tipo() throws Exception{
         if(token.simbolo != "sinteiro" && token.simbolo != "sbooleano"){
-            System.out.println("ERRO 12!!!");
+            System.out.println("erro 12: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
             System.exit(-1);
         }
         
@@ -201,7 +201,7 @@ public class Sintatico {
                     }
                 }
                 else{
-                    System.out.println("erro 13: atribuiçao");
+                    System.out.println("erro 13: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                     System.exit(-1);
                 }
             }
@@ -209,7 +209,7 @@ public class Sintatico {
         }
         else{
             System.out.println(""+ token.simbolo);
-            System.out.println("erro 14: " + token.simbolo + " " + token.lexema + " Invalido");
+            System.out.println("erro 14: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
             System.exit(-1);
         }
     }
@@ -255,18 +255,18 @@ public class Sintatico {
                 if(token.simbolo == "sfecha_parenteses")
                     token  = lexico.getToken();
                 else{
-                    System.out.println("ERRO 15!!!");
+                    System.out.println("erro 15: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                     System.exit(-1);
                 }
                 
             }
             else{
-                    System.out.println("ERRO 16!!!");
+                    System.out.println("erro 16: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                     System.exit(-1);
             }
         }
         else{
-                    System.out.println("ERRO 17!!!");
+                    System.out.println("erro 17: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                     System.exit(-1);            
         }
     }
@@ -284,18 +284,18 @@ public class Sintatico {
                 if(token.simbolo == "sfecha_parenteses")
                     token  = lexico.getToken();
                 else{
-                    System.out.println("ERRO 18!!!");
+                    System.out.println("erro 18: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                     System.exit(-1);
                 }
                 
             }
             else{
-                    System.out.println("ERRO 19!!!");
+                    System.out.println("erro 19: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                     System.exit(-1);
             }
         }
         else{
-                    System.out.println("ERRO 20!!!");
+                    System.out.println("erro 20: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                     System.exit(-1);            
         }
     }
@@ -311,7 +311,7 @@ public class Sintatico {
             sintatico.Analisa_Comando_Simples();
         }
         else{
-            System.out.println("erro 21: " + token.simbolo + " " + token.lexema + " Invalido Linha:" + linha);
+            System.out.println("erro 21: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
             System.exit(-1);
         }
         
@@ -335,7 +335,7 @@ public class Sintatico {
             }
         }
         else{
-            System.out.println("ERRO 22!!!");
+            System.out.println("erro 22: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
             System.exit(-1);
         }
     }
@@ -354,7 +354,7 @@ public class Sintatico {
             if(token.simbolo == "sponto_virgula")
                 token  = lexico.getToken();
             else{
-                System.out.println("erro 23: "+ token.simbolo + " invalido");
+                System.out.println("erro 23: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                 System.exit(-1);
             }
         }
@@ -371,12 +371,12 @@ public class Sintatico {
             if(token.simbolo == "sponto_virgula")
                 sintatico.Analisa_Bloco();
             else{
-                System.out.println("ERRO 24!!!");
+                System.out.println("erro 24: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                 System.exit(-1);
             }
         }
         else{
-            System.out.println("ERRO 25!!!");
+            System.out.println("erro 25: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
             System.exit(-1);
         }
     }
@@ -404,17 +404,17 @@ public class Sintatico {
                     }
                 }
                 else{
-                    System.out.println("ERRO 26!!!");
+                    System.out.println("erro 26: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                     System.exit(-1);
                 }
             }
             else{
-                System.out.println("ERRO 27!!!");
+                System.out.println("erro 27: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                 System.exit(-1);
             }
         }
         else{
-            System.out.println("ERRO 28!!!");
+            System.out.println("erro 28: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
             System.exit(-1);
         }
     }
@@ -484,7 +484,7 @@ public class Sintatico {
             if(token.simbolo == "sfecha_parenteses")
                 token  = lexico.getToken();
             else{
-                System.out.println("erro 29: simbolo antes de fecha parenteses");
+                System.out.println("erro 29: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +   (linha + 1));
                 System.exit(-1);
             }
         }
@@ -493,7 +493,7 @@ public class Sintatico {
             token  = lexico.getToken();
         }
         else{
-            System.out.println("erro 30: operador "+ token.simbolo + " Invalido");
+           System.out.println("erro 30: " + token.simbolo + " " + token.lexema + " palavra faltando, Linha:" +    (linha + 1));
             System.exit(-1);
         }
     }
