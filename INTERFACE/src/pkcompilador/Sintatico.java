@@ -24,7 +24,7 @@ public class Sintatico {
         
         sintatico = new Sintatico();
         linha=0;
-        System.out.println("Sintatico Aqui:::::");
+        //System.out.println("Sintatico Aqui:::::");
         /*
         if(token != null){
         System.out.println("" + token.lexema + "         " + token.simbolo);

@@ -5,13 +5,48 @@
  */
 package pkcompilador;
 
+import static java.lang.Math.sqrt;
+
 /**
  *
  * @author Louiz
  */
 public class Semantico {
     
-    /*
+    
+    
+    public static void main(String args[]){
+       
+    
+
+     
+    // write your code in C99
+        int A=4;
+        int B=17;
+    int i,j,cont;
+    
+    cont = 0;
+    j=0;
+
+    for(i=A; i<=B; i++){
+    
+        j = (int) sqrt(i);
+    
+        if(j*j == i){
+    
+            cont++;
+        }
+    
+    }
+    
+    System.out.print(cont);
+
+   
+
+        
+    
+        
+    }
     
     
     
@@ -19,8 +54,7 @@ public class Semantico {
     
     
     
-    
-    */
+   
     
     
 }
